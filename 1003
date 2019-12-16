@@ -1,0 +1,43 @@
+//1003
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int m,n,i,j,sum=0,numsum=0,t1,t2;
+    int pri[5000],num[5000];
+    scanf("%d %d",&n,&m);
+    for(i=0;i<m;i++)
+    {
+        scanf("%d %d",&pri[i],&num[i]);
+    }
+    for(i=0;i<m-1;i++)
+    {
+        for(j=i+1;j<m;j++)
+        {
+            if(pri[i]>pri[j])
+            {
+                t1=pri[i];
+                pri[i]=pri[j];
+                pri[j]=t1;
+                t2=num[i];
+                num[i]=num[j];
+                num[j]=t2;
+            }
+        }
+    }
+    i=0;
+    while(1)
+    {
+
+        numsum=num[i]+numsum;
+        if(numsum>=n)break;
+        sum=sum+pri[i]*num[i];
+
+        i++;
+
+    }
+    sum=sum+pri[i]*(numsum-n);
+    printf("%d\n",sum);
+    return 0;
+}
